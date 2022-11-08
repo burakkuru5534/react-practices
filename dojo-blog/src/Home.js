@@ -2,23 +2,22 @@ import { useState } from "react";
 
 const Home = () => {
 
-    const [name,setName] = useState('suzi')
-    const [age, setAge] = useState(23)
-    const handleClick = (e) =>{
+    const [blogs,setBlogs] = useState([
 
-        setName('suzan')
-        setAge(24)
-        
-    }
-    const handleClickAgain = (name,e) =>{
-        console.log('clicked by '+name, e.target)
-    }
+        { title: ' A Clockwork Orange', body: 'lorem ipsum...', author: 'Anthony Burgess', id: 1 },
+        { title: '1984', body: 'lorem ipsum...', author: 'Gerorge Orwell', id: 2 },
+        { title: 'Kürk Mantolu Madonna ', body: 'lorem ipsum...', author: 'Sabahattin Ali', id: 3 }
+    ])
+
     return ( 
         <div className="home">
-            <h2>Homepage</h2>
-            <h2>{ name } is { age } years old. </h2>
-            <button onClick={handleClick}>Click me</button>
-            <button onClick={(e)=> handleClickAgain('burak',e)}>Click me again</button>
+            {blogs.map( blog => (
+                <div className="blog-preview" key={blog.id}>
+                    <h2>{blog.title}</h2>
+                    <p>{blog.author}</p>
+                </div>
+            ))}
+
         </div>
      );
 }
