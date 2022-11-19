@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
 
@@ -6,6 +7,7 @@ const Create = () => {
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('George Orwell');
     const [isPending, setIsPending] = useState(false); 
+    const history = useHistory();
 
     const handleSubmit = (e) => {
 
@@ -19,6 +21,8 @@ const Create = () => {
             body: JSON.stringify(blog)
         }).then(() => {
                 setIsPending(false);
+               // history.go(-1); we can go back and forward with this function
+                history.push('/'); // we can set the router again with push method instead.
         })
     }
 
